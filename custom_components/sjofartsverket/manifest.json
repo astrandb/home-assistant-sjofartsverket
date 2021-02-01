@@ -1,6 +1,7 @@
 {
   "domain": "sjofartsverket",
   "name": "Sjöfartsverket",
+  "version": "0.4.2",
   "documentation": "https://github.com/astrandb/home-assistant-sjofartsverket",
   "issue_tracker": "https://github.com/astrandb/home-assistant-sjofartsverket/issues",
   "dependencies": [],
