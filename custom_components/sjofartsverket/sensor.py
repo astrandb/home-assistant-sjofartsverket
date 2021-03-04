@@ -8,7 +8,7 @@ from datetime import timedelta
 
 import homeassistant.helpers.config_validation as cv
 import voluptuous as vol
-from homeassistant.components.rest.sensor import RestData
+from homeassistant.components.rest.data import RestData
 from homeassistant.components.sensor import PLATFORM_SCHEMA
 from homeassistant.const import CONF_NAME
 from homeassistant.helpers.entity import Entity

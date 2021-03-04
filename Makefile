@@ -1,4 +1,4 @@
-__VERSION__ = "0.4.2"
+__VERSION__ = "0.9.4"
 
 lint:
 	isort custom_components
