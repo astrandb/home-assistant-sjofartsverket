@@ -17,7 +17,7 @@ _LOGGER = logging.getLogger(__name__)
 _ENDPOINT = "https://services.viva.sjofartsverket.se:8080/output/vivaoutputservice.svc/vivastation/"
 
 DEFAULT_NAME = "Sjöfartsverket"
-DEFAULT_INTERVAL = 5
+DEFAULT_INTERVAL = 1
 DEFAULT_VERIFY_SSL = True
 CONF_LOCATION = "location"
 
@@ -68,9 +68,8 @@ async def add_sensors(
     if rest.data is None:
         _LOGGER.error("Unable to fetch data from Sjöfartsverket")
         return False
-
+    _LOGGER.debug("rest.data: %s", rest.data)
     restData = json.loads(rest.data)
-    _LOGGER.info("restData: %s", restData)
     sensors = []
     location = restData["GetSingleStationResult"]["Name"]
     for data in restData["GetSingleStationResult"]["Samples"]:
@@ -153,6 +152,7 @@ class entityRepresentation(Entity):
             ]
 
             await self._rest.async_update()
+            _LOGGER.debug("%s - updated data: %s", self._data["Name"], self._rest.data)
             self._result = json.loads(self._rest.data)
             self._name = self._prefix + "_" + self._location + "_" + self._data["Name"]
             for data in self._result["GetSingleStationResult"]["Samples"]:
